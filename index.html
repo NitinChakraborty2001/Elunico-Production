@@ -24,7 +24,7 @@ tailwind.config = {
   theme: {
     extend: {
       fontFamily: { display: ['PT Sans','sans-serif'], body: ['DM Sans','sans-serif'] },
-      colors: { accent: '#FF6B2B', 'accent-light': '#FF8F5C' }
+      colors: { accent: '#93F205', 'accent-light': '#A8F53D' }
     }
   }
 }
@@ -43,7 +43,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 /* scrollbar */
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:#FF6B2B;border-radius:99px}
+::-webkit-scrollbar-thumb{background:#93F205;border-radius:99px}
 
 /* reveal on scroll */
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .6s cubic-bezier(.4,0,.2,1),transform .6s cubic-bezier(.4,0,.2,1)}
@@ -73,6 +73,12 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .stag{transition:border-color .18s}
 
 [x-cloak]{display:none!important}
+
+/* logo light/dark mode */
+.nav-logo{height:32px;width:auto;display:block;}
+.footer-logo{height:28px;width:auto;display:block;}
+.nav-logo,.footer-logo{filter:brightness(0);transition:filter .3s;}
+.dark .nav-logo,.dark .footer-logo{filter:none;}
 </style>
 </head>
 
@@ -83,8 +89,8 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
   :class="sc?'bg-white/90 dark:bg-zinc-950/90 backdrop-blur-md shadow-sm shadow-black/5':''">
   <nav class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between" aria-label="Main navigation">
 
-    <a href="#hero" class="font-display font-bold text-xl tracking-tight relative z-10">
-      <span class="text-zinc-900 dark:text-white">elunico</span><span class="text-accent">production</span>
+    <a href="#hero" class="relative z-10">
+      <img src="Elunico Production Logo.png" alt="Elunico Production" class="nav-logo">
     </a>
 
     <ul class="hidden md:flex items-center gap-8 text-sm" role="list">
@@ -188,7 +194,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     <div class="grid md:grid-cols-3 gap-6">
 
       <article class="reveal d1 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
-        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
+        <div class="w-12 h-12 flex items-center justify-center bg-lime-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
           <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17H3a2 2 0 01-2-2V5a2 2 0 012-2h14a2 2 0 012 2v10a2 2 0 01-2 2h-2"/></svg>
         </div>
         <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">Graphic Design</h3>
@@ -204,7 +210,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
       </article>
 
       <article class="reveal d3 card-h group bg-white dark:bg-zinc-900 rounded-2xl p-8 border border-zinc-100 dark:border-zinc-800 hover:border-accent">
-        <div class="w-12 h-12 flex items-center justify-center bg-orange-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
+        <div class="w-12 h-12 flex items-center justify-center bg-lime-50 dark:bg-zinc-800 rounded-xl mb-6 group-hover:bg-accent/10 transition-colors">
           <svg class="w-6 h-6 text-accent" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z"/></svg>
         </div>
         <h3 class="font-display font-bold text-xl text-zinc-900 dark:text-white mb-3">Printing Services</h3>
@@ -234,7 +240,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-7">
           <div class="flex flex-wrap gap-2 mb-4">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">SaaS</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-3 py-1 rounded-full">SaaS</span>
             <span class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Figma</span>
             <span class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Tailwind</span>
           </div>
@@ -252,7 +258,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-6">
           <div class="flex flex-wrap gap-2 mb-3">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Fintech</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-3 py-1 rounded-full">Fintech</span>
             <span class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Landing page</span>
           </div>
           <a href="case-study.html">
@@ -269,7 +275,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-6">
           <div class="flex flex-wrap gap-2 mb-3">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-3 py-1 rounded-full">Agency</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-3 py-1 rounded-full">Agency</span>
             <span class="text-xs bg-zinc-200 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400 px-3 py-1 rounded-full">Animation</span>
           </div>
           <a href="case-study.html">
@@ -400,7 +406,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-6">
           <div class="flex items-center gap-3 mb-3">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Design</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Design</span>
             <span class="text-xs text-zinc-400">Mar 8, 2025</span>
           </div>
           <a href="blog-article.html">
@@ -417,7 +423,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-6">
           <div class="flex items-center gap-3 mb-3">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Dev</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Dev</span>
             <span class="text-xs text-zinc-400">Feb 21, 2025</span>
           </div>
           <a href="blog-article.html">
@@ -434,7 +440,7 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
         </div>
         <div class="p-6">
           <div class="flex items-center gap-3 mb-3">
-            <span class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Freelance</span>
+            <span class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-2.5 py-1 rounded-full">Freelance</span>
             <span class="text-xs text-zinc-400">Jan 14, 2025</span>
           </div>
           <a href="blog-article.html">
@@ -526,7 +532,10 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 
 <footer class="border-t border-zinc-100 dark:border-zinc-900">
   <div class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-    <p class="text-sm text-zinc-400">Copyright © <span id="yr"></span> Nitin & Rana - All Rights Reserved!
+    <a href="#hero">
+      <img src="Elunico Production Logo.png" alt="Elunico Production" class="footer-logo">
+    </a>
+    <p class="text-sm text-zinc-400">Copyright © <span id="yr"></span> Nitin & Rana - All Rights Reserved!</p>
   </div>
 </footer>
 

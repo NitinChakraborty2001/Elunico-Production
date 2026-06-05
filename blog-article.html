@@ -37,7 +37,7 @@
 							display: ["PT Sans", "sans-serif"],
 							body: ["DM Sans", "sans-serif"],
 						},
-						colors: { accent: "#FF6B2B", "accent-light": "#FF8F5C" },
+						colors: { accent: "#93F205", "accent-light": "#A8F53D" },
 					},
 				},
 			};
@@ -66,7 +66,7 @@
 				background: transparent;
 			}
 			::-webkit-scrollbar-thumb {
-				background: #ff6b2b;
+				background: #93F205;
 				border-radius: 99px;
 			}
 			body {
@@ -132,6 +132,12 @@
 				display: block;
 			}
 
+			/* logo light/dark mode */
+			.nav-logo{height:32px;width:auto;display:block;}
+			.footer-logo{height:28px;width:auto;display:block;}
+			.nav-logo,.footer-logo{filter:brightness(0);transition:filter .3s;}
+			.dark .nav-logo,.dark .footer-logo{filter:none;}
+
 			/* Article typography */
 			.prose-article h2 {
 				font-family: "PT Sans", sans-serif;
@@ -180,7 +186,7 @@
 			}
 			.prose-article code:not(pre code) {
 				background: #f4f4f5;
-				color: #ff6b2b;
+				color: #93F205;
 				padding: 0.15em 0.4em;
 				border-radius: 4px;
 				font-size: 0.875em;
@@ -189,10 +195,10 @@
 				background: #27272a;
 			}
 			.prose-article blockquote {
-				border-left: 3px solid #ff6b2b;
+				border-left: 3px solid #93F205;
 				padding: 0.75rem 1.25rem;
 				margin: 0 0 1.6rem;
-				background: #fff7f4;
+				background: #f5fff0;
 				border-radius: 0 8px 8px 0;
 			}
 			.dark .prose-article blockquote {
@@ -207,7 +213,7 @@
 				color: #a1a1aa;
 			}
 			.prose-article a {
-				color: #ff6b2b;
+				color: #93F205;
 				text-decoration: underline;
 				text-underline-offset: 3px;
 			}
@@ -226,7 +232,7 @@
 				top: 0;
 				left: 0;
 				height: 3px;
-				background: #ff6b2b;
+				background: #93F205;
 				z-index: 100;
 				transition: width 0.1s;
 			}
@@ -273,9 +279,8 @@
 				class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between"
 				aria-label="Main navigation"
 			>
-				<a href="index.html" class="font-display font-bold text-xl tracking-tight z-10">
-					<span class="text-zinc-900 dark:text-white">elunico</span
-					><span class="text-accent">production</span>
+				<a href="index.html" class="z-10">
+					<img src="Elunico Production Logo.png" alt="Elunico Production" class="nav-logo">
 				</a>
 				<ul class="hidden md:flex items-center gap-8 text-sm font-medium" role="list">
 					<li>
@@ -469,7 +474,7 @@
 
 					<div class="flex items-center gap-3 mb-5">
 						<span
-							class="text-xs bg-orange-50 dark:bg-zinc-800 text-accent border border-orange-200 dark:border-zinc-700 px-2.5 py-1 rounded-full"
+							class="text-xs bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700 px-2.5 py-1 rounded-full"
 							>Design</span
 						>
 						<span class="text-xs text-zinc-400">March 8, 2025 · 7 min read</span>
@@ -763,6 +768,9 @@
 			<div
 				class="max-w-6xl mx-auto px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-4"
 			>
+				<a href="index.html">
+					<img src="Elunico Production Logo.png" alt="Elunico Production" class="footer-logo">
+				</a>
 				<p class="text-sm text-zinc-400">
 					Copyright © <span id="yr"></span> Nitin & Rana - All Rights Reserved! <br />
 				</p>
