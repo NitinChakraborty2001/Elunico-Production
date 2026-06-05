@@ -14,6 +14,8 @@
 
 <script src="https://cdn.tailwindcss.com"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=PT+Sans:ital,wght@0,400;0,700;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet">
@@ -79,6 +81,12 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
 .footer-logo{height:28px;width:auto;display:block;}
 .nav-logo,.footer-logo{filter:brightness(0);transition:filter .3s;}
 .dark .nav-logo,.dark .footer-logo{filter:none;}
+
+/* cube swiper */
+.cube-swiper{width:100%;max-width:24rem;aspect-ratio:1;margin:0 auto;}
+.cube-swiper .swiper-slide{border-radius:1.5rem;overflow:hidden;background:#d4d4d8;}
+.cube-swiper .swiper-slide img{width:100%;height:100%;object-fit:cover;display:block;}
+.swiper-cube-shadow{background:rgba(147,242,5,.18)!important;filter:blur(30px)!important;}
 </style>
 </head>
 
@@ -294,8 +302,28 @@ background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/sv
     <div class="grid md:grid-cols-2 gap-16 items-center">
 
       <div class="reveal order-2 md:order-1">
-        <div class="pf w-full aspect-square max-w-sm mx-auto rounded-3xl">
-          <img src="https://images.unsplash.com/photo-1518131672697-613becd4fab5?w=700&q=80" alt="Elunico Production on set" loading="lazy">
+        <div class="swiper cube-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="images/1.jpg" alt="Elunico Production project 1" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/2.jpg" alt="Elunico Production project 2" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/3.jpg" alt="Elunico Production project 3" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/4.jpg" alt="Elunico Production project 4" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/5.jpg" alt="Elunico Production project 5" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/6.jpg" alt="Elunico Production project 6" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/7.jpg" alt="Elunico Production project 7" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/8.jpg" alt="Elunico Production project 8" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/9.jpg" alt="Elunico Production project 9" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/10.jpg" alt="Elunico Production project 10" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/11.jpg" alt="Elunico Production project 11" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/12.jpg" alt="Elunico Production project 12" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/13.jpg" alt="Elunico Production project 13" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/14.jpg" alt="Elunico Production project 14" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/15.jpg" alt="Elunico Production project 15" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/16.jpg" alt="Elunico Production project 16" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/17.jpg" alt="Elunico Production project 17" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/18.jpg" alt="Elunico Production project 18" loading="lazy"></div>
+            <div class="swiper-slide"><img src="images/19.jpg" alt="Elunico Production project 19" loading="lazy"></div>
+          </div>
         </div>
       </div>
 
@@ -511,6 +539,26 @@ function app() {
     }
   }
 }
+</script>
+
+<script>
+// Cube Swiper
+new Swiper('.cube-swiper', {
+  effect: 'cube',
+  grabCursor: true,
+  loop: true,
+  speed: 800,
+  cubeEffect: {
+    shadow: true,
+    slideShadows: true,
+    shadowOffset: 24,
+    shadowScale: 0.94,
+  },
+  autoplay: {
+    delay: 3000,
+    disableOnInteraction: false,
+  },
+});
 </script>
 
 </body>
