@@ -372,39 +372,69 @@
 								<article
 									class="project-card group h-full rounded-2xl overflow-hidden bg-white dark:bg-zinc-900 border border-zinc-100 dark:border-zinc-800 hover:border-accent transition-colors"
 								>
-									<a :href="p.url" class="block photo-frame w-full h-52">
+									<a :href="p.url ? p.url : 'javascript:void(0)'" :target="p.url && p.url.startsWith('http') ? '_blank' : '_self'" rel="noopener noreferrer" class="block photo-frame w-full h-52">
 										<img :src="p.img" :alt="p.title" loading="lazy" />
 									</a>
-									<div class="p-6">
-										<div class="flex flex-wrap gap-2 mb-3">
-											<template x-for="tag in p.tags" :key="tag">
-												<span
-													class="text-xs px-2.5 py-1 rounded-full"
-													:class="tag === p.categoryLabel ? 'bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'"
-													x-text="tag"
-												></span>
-											</template>
+									<div class="p-6 flex flex-col h-[calc(100%-13rem)] justify-between">
+										<div>
+											<div class="flex flex-wrap gap-2 mb-3">
+												<template x-for="tag in p.tags" :key="tag">
+													<span
+														class="text-xs px-2.5 py-1 rounded-full"
+														:class="tag === p.categoryLabel ? 'bg-lime-50 dark:bg-zinc-800 text-accent border border-lime-200 dark:border-zinc-700' : 'bg-zinc-100 dark:bg-zinc-800 text-zinc-600 dark:text-zinc-400'"
+														x-text="tag"
+													></span>
+												</template>
+											</div>
+											<a :href="p.url ? p.url : 'javascript:void(0)'" :target="p.url && p.url.startsWith('http') ? '_blank' : '_self'" rel="noopener noreferrer">
+												<h3
+													class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors"
+													x-text="p.title"
+												></h3>
+											</a>
+											<p
+												class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4"
+												x-text="p.desc"
+											></p>
 										</div>
-										<a :href="p.url">
-											<h3
-												class="font-display font-bold text-lg text-zinc-900 dark:text-white mb-2 group-hover:text-accent transition-colors"
-												x-text="p.title"
-											></h3>
-										</a>
-										<p
-											class="text-sm text-zinc-500 dark:text-zinc-400 leading-relaxed mb-4"
-											x-text="p.desc"
-										></p>
-										<div class="flex items-center justify-between">
-											<a
-												:href="p.url"
-												class="inline-flex items-center gap-1.5 text-sm font-medium text-zinc-900 dark:text-white nav-link"
-												>View project →</a
-											>
-											<span
-												class="text-xs text-zinc-400"
-												x-text="p.year"
-											></span>
+										<div>
+											<div class="flex items-center justify-between mt-2">
+												<template x-if="p.url">
+													<a
+														:href="p.url"
+														target="_blank"
+														rel="noopener noreferrer"
+														class="inline-flex items-center gap-1 text-sm font-semibold text-accent hover:text-accent-light transition-colors"
+														>Watch Now &rarr;</a
+													>
+												</template>
+												<template x-if="!p.url">
+													<span class="text-xs text-zinc-400 italic">Project Highlights</span>
+												</template>
+												<span
+													class="text-xs text-zinc-400"
+													x-text="p.year"
+												></span>
+											</div>
+											
+											<!-- Multiple Links / Video Reel Links -->
+											<template x-if="p.links && p.links.length > 0">
+												<div class="mt-4 pt-3 border-t border-zinc-100 dark:border-zinc-800/80 flex flex-wrap gap-2">
+													<template x-for="link in p.links" :key="link.url">
+														<a
+															:href="link.url"
+															target="_blank"
+															rel="noopener noreferrer"
+															class="inline-flex items-center gap-1 text-[11px] font-semibold px-2.5 py-1 rounded-md bg-zinc-50 dark:bg-zinc-800/50 hover:bg-accent/10 hover:text-accent border border-zinc-200/50 dark:border-zinc-700/50 transition-colors"
+														>
+															<svg x-show="link.url.includes('youtube') || link.url.includes('youtu.be')" class="w-3 h-3 text-red-500 fill-current" viewBox="0 0 24 24"><path d="M23.498 6.163a3.003 3.003 0 0 0-2.11-2.108C19.524 3.545 12 3.545 12 3.545s-7.525 0-9.387.51A3.002 3.002 0 0 0 .502 6.163C0 8.04 0 12 0 12s0 3.96.502 5.837a3.003 3.003 0 0 0 2.11 2.108c1.862.51 9.387.51 9.387.51s7.524 0 9.387-.51a3.002 3.002 0 0 0 2.11-2.108c.502-1.877.502-5.837.502-5.837s0-3.96-.502-5.837zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+															<svg x-show="link.url.includes('instagram')" class="w-3 h-3 text-pink-500 fill-current" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/></svg>
+															<svg x-show="!link.url.includes('youtube') && !link.url.includes('instagram') && !link.url.includes('youtu.be')" class="w-3 h-3 text-zinc-500 fill-none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+															<span x-text="link.label"></span>
+														</a>
+													</template>
+												</div>
+											</template>
 										</div>
 									</div>
 								</article>
@@ -484,120 +514,153 @@
 						{ value: "design", label: "Design & Print" },
 					],
 
-					allProjects: [
-						{
-							id: 1,
-							title: "Skipper PVC Pipes (Chris Gayle)",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Music", "Video"],
-							year: "2023",
-							desc: "Elunico composed original music with vibrant Jamaican-style rhythms and produced the full video presentation for Skipper's Universal Boss Meet.",
-							img: "images/cases/CS2.jpg",
-							url: "case-study.html",
-						},
-						{
-							id: 2,
-							title: "Hyundai i20 — Drive Mein Junoon",
-							category: "music",
-							categoryLabel: "Music Ad",
-							tags: ["Music", "Ad", "Audio-Visual"],
-							year: "2024",
-							desc: "Directed by Sourabh, this innovative audio-visual project fused the mechanical sounds of 118 cars with soulful music by renowned artists Arijit Singh and Clinton Cerejo.",
-							img: "images/cases/CS1.jpeg",
-							url: "case-study.html",
-						},
-						{
-							id: 3,
-							title: "Ajanta Shoes",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Storytelling"],
-							year: "2024",
-							desc: "Produced an emotionally driven storytelling film, executing every stage in-house from the initial storyline to post-production.",
-							img: "images/cases/CS3.jpg",
-							url: "case-study.html",
-						},
-						{
-							id: 4,
-							title: "Sufiyaan — Music for Happiness",
-							category: "music",
-							categoryLabel: "Music Video",
-							tags: ["Music", "Video", "Sufi"],
-							year: "2024",
-							desc: "Produced a soulful Sufi music video under the Sufiyaan label in collaboration with Elunico IT Solutions, blending cinematic visuals with devotional artistry.",
-							img: "images/cases/CS4.jpg",
-							url: "case-study.html",
-						},
-						{
-							id: 5,
-							title: "Thakita Premer Moto",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Web Series", "OTT"],
-							year: "2025",
-							desc: "Directed by Rahool Mukherjee, this Bengali web series on Platform Originals is an ensemble romantic comedy exploring modern relationships.",
-							img: "images/cases/CS5.jpeg",
-							url: "case-study.html",
-						},
-						{
-							id: 6,
-							title: "Prince — Once Upon a Time in Dhaka",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Feature", "Cinematic"],
-							year: "2026",
-							desc: "A high-octane cinematic feature starring Shakib Khan, produced for theatrical release during Eid Ul Fitr, delivering blockbuster-level production design and VFX.",
-							img: "images/cases/CS6.jpeg",
-							url: "case-study.html",
-						},
-						{
-							id: 7,
-							title: "Country Harvest — Top Rusk",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Ad", "Commercial"],
-							year: "2025",
-							desc: 'Created a vibrant television commercial for Country Harvest\'s "Top" rusk brand, capturing everyday moments with energetic storytelling and catchy visuals.',
-							img: "images/cases/CS7.jpeg",
-							url: "case-study.html",
-						},
-						{
-							id: 8,
-							title: "Made in Kolkata",
-							category: "film",
-							categoryLabel: "Film Production",
-							tags: ["Film", "Feature", "Bengali"],
-							year: "2025",
-							desc: "A film by Mainak Bhaumik exploring the love-hate relationship with Kolkata — blending urban storytelling with the raw pulse of the city.",
-							img: "images/cases/CS8.jpg",
-							url: "case-study.html",
-						},
-						{
-							id: 9,
-							title: "Aamar Kolkata Marathon",
-							category: "design",
-							categoryLabel: "Design & Print",
-							tags: ["Design", "Print", "Events"],
-							year: "2025",
-							desc: "Designed event branding and promotional materials for the Aamar Kolkata Marathon organized by the Calcutta Police Club, including posters, banners, and registration collateral.",
-							img: "images/cases/CS9.jpeg",
-							url: "case-study.html",
-						},
-						{
-							id: 10,
-							title: '"Jabo Bohudur"',
-							category: "music",
-							categoryLabel: "Music Video",
-							tags: ["Music", "Video"],
-							year: "2024",
-							desc: "A visually stunning music video production that captures the spirit of wanderlust through evocative cinematography and rhythmic storytelling.",
-							img: "images/cases/CS4.jpg",
-							url: "case-study.html",
-						},
-					],
+				allProjects: [
+					{
+						id: 1,
+						title: "Skipper PVC Pipes (Chris Gayle)",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Music", "Video"],
+						year: "2023",
+						desc: "Elunico composed original music with vibrant Jamaican-style rhythms and produced the full video presentation for Skipper's Universal Boss Meet.",
+						img: "images/cases/CS2.jpg",
+						url: "https://youtu.be/T3na5bZU4NI?si=-yu-AQ1Mhlyf7IM",
+						links: [
+							{ label: "Watch on YouTube", url: "https://youtu.be/T3na5bZU4NI?si=-yu-AQ1Mhlyf7IM" }
+						]
+					},
+					{
+						id: 2,
+						title: "Hyundai i20 — Drive Mein Junoon",
+						category: "music",
+						categoryLabel: "Music Ad",
+						tags: ["Music", "Ad", "Audio-Visual"],
+						year: "2024",
+						desc: "Directed by Sourabh, this innovative audio-visual project fused the mechanical sounds of 118 cars with soulful music by renowned artists Arijit Singh and Clinton Cerejo.",
+						img: "images/cases/CS1.jpeg",
+						url: "https://youtu.be/Xdd3J2KQmk?si=OEv8-BPkkAANZLCR",
+						links: [
+							{ label: "Watch on YouTube", url: "https://youtu.be/Xdd3J2KQmk?si=OEv8-BPkkAANZLCR" }
+						]
+					},
+					{
+						id: 3,
+						title: "Ajanta Shoes",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Storytelling"],
+						year: "2024",
+						desc: "Produced an emotionally driven storytelling film, executing every stage in-house from the initial storyline to post-production.",
+						img: "images/cases/CS3.jpg",
+						url: "https://youtube.com/shorts/Qbz8Lxnp3Y8?feature=share",
+						links: [
+							{ label: "Watch Short 1", url: "https://youtube.com/shorts/Qbz8Lxnp3Y8?feature=share" },
+							{ label: "Watch Short 2", url: "https://youtube.com/shorts/DMDSSO2eY2Q?feature=share" }
+						]
+					},
+					{
+						id: 4,
+						title: '"Jabo Bohudur" — Sufiyaan',
+						category: "music",
+						categoryLabel: "Music Video",
+						tags: ["Music", "Video", "Sufi"],
+						year: "2024",
+						desc: "A visually stunning music video production released under the Sufiyaan music label, capturing evocative cinematography and rhythmic storytelling.",
+						img: "images/cases/CS4.jpg",
+						url: "https://youtu.be/7X4Uy6XuiY?si=X8XgiB8x1T4fhSEU",
+						links: [
+							{ label: "Watch on YouTube", url: "https://youtu.be/7X4Uy6XuiY?si=X8XgiB8x1T4fhSEU" }
+						]
+					},
+					{
+						id: 5,
+						title: "Khanikta Premer Moto",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Web Series", "OTT"],
+						year: "2025",
+						desc: "Directed by Rahool Mukherjee, this Bengali web series on Platform Originals is an ensemble romantic comedy exploring modern relationships.",
+						img: "images/cases/CS5.jpeg",
+						url: "https://platform8.tv/detail/khanikta-premer-moto/TSH63683520/tvshow",
+						links: [
+							{ label: "Watch Promo", url: "https://www.youtube.com/watch?v=4r2vZGASI-0" },
+							{ label: "Stream on Platform8", url: "https://platform8.tv/detail/khanikta-premer-moto/TSH63683520/tvshow" }
+						]
+					},
+					{
+						id: 6,
+						title: "PRINCE",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Feature", "Cinematic"],
+						year: "2026",
+						desc: "A high-octane cinematic feature starring Megastar Shakib Khan, delivering blockbuster-level production design, action, and VFX.",
+						img: "images/cases/CS6.jpeg",
+						url: "https://www.youtube.com/watch?v=T2hNe9z4nH8",
+						links: [
+							{ label: "Watch Trailer", url: "https://www.youtube.com/watch?v=T2hNe9z4nH8" }
+						]
+					},
+					{
+						id: 7,
+						title: "Country Harvest",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Ad", "Commercial"],
+						year: "2025",
+						desc: 'Created a vibrant television commercial for Country Harvest\'s "Top" rusk brand, capturing everyday family moments with energetic storytelling.',
+						img: "images/cases/CS7.jpeg",
+						url: "https://www.youtube.com/watch?v=1qA3eBGJMg",
+						links: [
+							{ label: "Watch Ad", url: "https://www.youtube.com/watch?v=1qA3eBGJMg" }
+						]
+					},
+					{
+						id: 8,
+						title: "Made in Kolkata",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Feature", "Bengali"],
+						year: "2025",
+						desc: "A film by Mainak Bhaumik exploring the love-hate relationship with Kolkata — blending urban storytelling with the raw pulse of the city.",
+						img: "images/cases/CS8.jpg",
+						url: "https://www.instagram.com/reel/DOBF1W8kwpq/",
+						links: [
+							{ label: "Watch Reel 1", url: "https://www.instagram.com/reel/DOBF1W8kwpq/" },
+							{ label: "Watch Reel 2", url: "https://www.instagram.com/reel/DOQMyQYkTJp/" }
+						]
+					},
+					{
+						id: 9,
+						title: "Mon Mane Na",
+						category: "film",
+						categoryLabel: "Film Production",
+						tags: ["Film", "Romance", "Reels"],
+						year: "2026",
+						desc: "A series of captivating promotional sequences and visual reels showcasing modern romantic storytelling and cinematic production value.",
+						img: "https://images.unsplash.com/photo-1524712245354-2c4e5e7124c5?w=700&q=80",
+						url: "https://www.instagram.com/reel/DPjftlaEroP/",
+						links: [
+							{ label: "Watch Reel 1", url: "https://www.instagram.com/reel/DPjftlaEroP/" },
+							{ label: "Watch Reel 2", url: "https://www.instagram.com/reel/DPYI8NcDatC/" },
+							{ label: "Watch Reel 3", url: "https://www.instagram.com/reel/DPjfOuwkqTR/" }
+						]
+					},
+					{
+						id: 10,
+						title: "Aamar Kolkata Marathon",
+						category: "design",
+						categoryLabel: "Design & Print",
+						tags: ["Design", "Print", "Events"],
+						year: "2025",
+						desc: "Designed event branding and promotional materials for the Aamar Kolkata Marathon organized by the Calcutta Police Club.",
+						img: "images/cases/CS9.jpeg",
+						url: "",
+						links: []
+					}
+				],
 
-					get visibleCount() {
+				get visibleCount() {
 						if (this.filter === "all") return this.allProjects.length;
 						return this.allProjects.filter((p) => p.category === this.filter).length;
 					},
